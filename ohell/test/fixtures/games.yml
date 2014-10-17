@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2014-10-16 21:39:48
+  numPlay: 1
+  league: false
+
+two:
+  date: 2014-10-16 21:39:48
+  numPlay: 1
+  league: false
