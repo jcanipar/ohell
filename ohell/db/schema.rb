@@ -11,12 +11,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141017043948) do
+ActiveRecord::Schema.define(version: 20141022035417) do
 
   create_table "games", force: true do |t|
     t.datetime "date"
     t.integer  "numPlay"
     t.boolean  "league"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "people", force: true do |t|
+    t.string   "firstname"
+    t.string   "lastname"
+    t.string   "nickname"
+    t.boolean  "team"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "players", force: true do |t|
+    t.string   "firstname"
+    t.string   "lastname"
+    t.string   "nickname"
+    t.boolean  "team"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "rounds", force: true do |t|
+    t.integer  "game_id"
+    t.integer  "score"
+    t.integer  "place"
+    t.integer  "correct"
+    t.integer  "asterisk"
+    t.integer  "player_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

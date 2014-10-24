@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label :date %><br>
-    <%= f.datetime_select :date %>
+    <%= f.date_select :date %>
   </div>
   <div class="field">
     <%= f.label :numPlay %><br>
@@ -23,7 +23,32 @@
     <%= f.label :league %><br>
     <%= f.check_box :league %>
   </div>
-  <div class="actions">
+
+  
+  <%= f.fields_for :rounds do |ff| %>
+    <div class="field inline">
+      <%= ff.label :score %>
+      <%= ff.text_field :score, :size=>"50" %>
+    </div>
+    <div class="field inline">
+      <%= ff.label :place %>
+      <%= ff.number_field :place %>
+    </div>
+    <div class="field inline">
+      <%= ff.label :correct %>
+      <%= ff.number_field :correct %>
+    </div>
+    <div class="field inline">
+      <%= ff.label :asterisk %>
+      <%= ff.number_field :asterisk %>
+    </div>
+    <div class="field inline">
+      <%= ff.label :player_id %>
+      <%= ff.number_field :player_id %>
+    </div>
+  <%end%>
+    <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+

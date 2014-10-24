@@ -1,4 +1,8 @@
 Ohell::Application.routes.draw do
+  resources :players
+
+  resources :people
+
   resources :rounds
 
   resources :games do

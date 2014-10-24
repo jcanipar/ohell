@@ -1,0 +1,37 @@
+<h1>Listing rounds</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Game</th>
+      <th>Score</th>
+      <th>Place</th>
+      <th>Correct</th>
+      <th>Asterisk</th>
+      <th>Player</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @rounds.each do |round| %>
+      <tr>
+        <td><%= round.game_id %></td>
+        <td><%= round.score %></td>
+        <td><%= round.place %></td>
+        <td><%= round.correct %></td>
+        <td><%= round.asterisk %></td>
+        <td><%= round.player_id %></td>
+        <td><%= link_to 'Show', round %></td>
+        <td><%= link_to 'Edit', edit_round_path(round) %></td>
+        <td><%= link_to 'Destroy', round, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Round', new_round_path %>

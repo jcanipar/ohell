@@ -15,6 +15,7 @@ class GamesController < ApplicationController
   # GET /games/new
   def new
     @game = Game.new
+    3.times {@game.rounds.new}
   end
 
   # GET /games/1/edit
@@ -69,6 +70,6 @@ class GamesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def game_params
-      params.require(:game).permit(:date, :numPlay, :league)
+      params.require(:game).permit(:date, :numPlay, :league, rounds_attributes: [:score, :place, :correct, :asterisk, :player_id])
     end
 end

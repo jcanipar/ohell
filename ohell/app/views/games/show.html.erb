@@ -2,17 +2,35 @@
 
 <p>
   <strong>Date:</strong>
-  <%= @game.date %>
+  <%= @game.date.strftime("%B %d, %Y") %>
 </p>
 
 <p>
-  <strong>Numplay:</strong>
+  <strong>Number of Players:</strong>
   <%= @game.numPlay %>
 </p>
 
+<table class="table">
+	<tr>
+		<th>Player</th>
+		<th>Place</th>
+		<th>Score</th>
+		<th>Correct</th>
+		<th>*</th>
+	</tr>
+	<% @game.rounds.each do |round| %>
+		<tr>
+			<td><%= round.player.nickname %></td>
+			<td><%= round.place %></td>
+			<td><%= round.score %></td>
+			<td><%= round.correct %></td>
+			<td><%= round.asterisk %></td>
+		</tr>
+	<% end %>	
+</table>
+
 <p>
-  <strong>League:</strong>
-  <%= @game.league %>
+	<%= link_to 'New Round', new_game_round_path(@game) %>
 </p>
 
 <%= link_to 'Edit', edit_game_path(@game) %> |

@@ -1,0 +1,33 @@
+<h1>Players</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>First</th>
+      <th>Last</th>
+      <th>Nickname</th>
+      <th>Team</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @players.each do |player| %>
+      <tr>
+        <td><%= player.firstname %></td>
+        <td><%= player.lastname %></td>
+        <td><%= player.nickname %></td>
+        <td><% if player.team %>Yes<% else %>No<% end %></td>
+        <td><%= link_to 'Show', player %></td>
+        <td><%= link_to 'Edit', edit_player_path(player) %></td>
+        <td><%= link_to 'Destroy', player, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Player', new_player_path %>
