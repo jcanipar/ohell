@@ -10,6 +10,7 @@
  *
  *= require_self
  *= require_tree .
+ *= require rails_bootstrap_forms
  */
 
 body {
@@ -17,10 +18,14 @@ body {
 }
 
 .inline {
-	display: inline;
+	display: inline-block;
 }
 
 .small-input {
   width: 110px;
   display: inline-block;
+}
+
+.hidden {
+	display: none;
 }

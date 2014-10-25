@@ -26,6 +26,8 @@ gem 'less-rails'
 
 gem 'bcrypt-ruby', '3.1.2'
 
+gem 'bootstrap_form'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 

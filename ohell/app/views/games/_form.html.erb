@@ -1,4 +1,4 @@
-<%= form_for(@game) do |f| %>
+<%= form_for @game, :html => {:class => 'form-inline'} do |f| %>
   <% if @game.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@game.errors.count, "error") %> prohibited this game from being saved:</h2>
@@ -16,36 +16,34 @@
     <%= f.date_select :date %>
   </div>
   <div class="field">
-    <%= f.label :numPlay %><br>
-    <%= f.number_field :numPlay %>
-  </div>
-  <div class="field">
-    <%= f.label :league %><br>
-    <%= f.check_box :league %>
+    <%= f.label "Number of Players" %><br>
+    <%= f.text_field :numPlay %>
   </div>
 
+  <br><br>
   
   <%= f.fields_for :rounds do |ff| %>
     <div class="field inline">
-      <%= ff.label :score %>
-      <%= ff.text_field :score, :size=>"50" %>
+      
+      <%= ff.collection_select(:player_id, Player.all(:order => 'nickname'), :id, :nickname, { :prompt => 'Select Player' } ) %>
     </div>
     <div class="field inline">
-      <%= ff.label :place %>
-      <%= ff.number_field :place %>
+      
+      <%= ff.text_field :score, :placeholder=>"Score" %>
+    </div>
+    <div class="form-group inline">
+      
+      <%= ff.text_field :place, :placeholder=>"Place" %>
     </div>
     <div class="field inline">
-      <%= ff.label :correct %>
-      <%= ff.number_field :correct %>
+      
+      <%= ff.text_field :correct, :placeholder=>"Correct" %>
     </div>
     <div class="field inline">
-      <%= ff.label :asterisk %>
-      <%= ff.number_field :asterisk %>
+      
+      <%= ff.text_field :asterisk, :placeholder=>"*" %>
     </div>
-    <div class="field inline">
-      <%= ff.label :player_id %>
-      <%= ff.number_field :player_id %>
-    </div>
+    <br><br>
   <%end%>
     <div class="actions">
     <%= f.submit %>
