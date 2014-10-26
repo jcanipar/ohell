@@ -28,6 +28,8 @@ gem 'bcrypt-ruby', '3.1.2'
 
 gem 'bootstrap_form'
 
+gem 'bootstrap-datepicker-rails'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
