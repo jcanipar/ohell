@@ -1,5 +1,7 @@
 Ohell::Application.routes.draw do
-  resources :players
+  resources :players do
+    get 'standings', :on => :collection
+  end
 
   resources :people
 

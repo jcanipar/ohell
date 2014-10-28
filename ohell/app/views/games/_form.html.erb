@@ -10,18 +10,17 @@
       </ul>
     </div>
   <% end %>
-
+  <br>
   <div class="field">
     <%= f.label :date %><br>
     <%= f.text_field :date, :class => 'datepicker' %>
   </div>
   <div class="field">
-    <%= f.label "Number of Players" %><br>
-    <%= f.text_field :numPlay %>
+    <%= f.hidden_field :numPlay, :value=>@game.numPlay %>
   </div>
 
   <br><br>
-  
+
   <table class="table table-striped">
     <thead>
       <tr>
@@ -35,37 +34,32 @@
 
     <% player_count = 0 %>
     <%= f.fields_for :rounds do |ff| %>
-    <% player_count = player_count + 1 %>
-    <tr>
-      <td>      
-        <%= player_count %>
-        <%= ff.hidden_field :place, :placeholder=>"Place", :value=>player_count %>
-      </td>
-      <td>      
-        <%= ff.collection_select(:player_id, Player.all(:order => 'nickname'), :id, :nickname, { :prompt => 'Select Player' } ) %>
-      </td>
-      <td>      
-        <%= ff.text_field :score, :placeholder=>"Score" %>
-      </td>
+      <% player_count = player_count + 1 %>
+      <tr>
+        <td>      
+          <%= player_count %>
+          <%= ff.hidden_field :place, :placeholder=>"Place", :value=>player_count %>
+        </td>
+        <td>      
+          <%= ff.collection_select(:player_id, Player.all(:order => 'nickname'), :id, :nickname, { :prompt => 'Select Player' } ) %>
+        </td>
+        <td>      
+          <%= ff.text_field :score, :placeholder=>"Score" %>
+        </td>
 
-      <td>      
-        <%= ff.text_field :correct, :placeholder=>"Correct" %>
-      </td>
-      <td>      
-        <%= ff.text_field :asterisk, :placeholder=>"*" %>
-      </td>
-    </tr>
-  
-    <%end%>
+        <td>      
+          <%= ff.text_field :correct, :placeholder=>"Correct" %>
+        </td>
+        <td>      
+          <%= ff.text_field :asterisk, :placeholder=>"*" %>
+        </td>
+      </tr>
+    
+      <%end%>
     </table>
     <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
 
-<script>
-$( "new_game" ).submit(function( event ) {
-  alert("worked");
-}
-</script>
 

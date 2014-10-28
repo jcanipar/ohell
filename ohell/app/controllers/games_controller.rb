@@ -15,7 +15,16 @@ class GamesController < ApplicationController
   # GET /games/new
   def new
     @game = Game.new
-    3.times {@game.rounds.new} 
+
+    players = params[:num_players].to_i
+    
+    if players < 3
+      players = 4
+    end 
+    
+    players.times {@game.rounds.new} 
+    @game.numPlay = players
+    
   end
 
   # GET /games/1/edit

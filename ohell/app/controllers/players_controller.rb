@@ -7,6 +7,45 @@ class PlayersController < ApplicationController
     @players = Player.all
   end
 
+  # GET /players
+  # GET /players.json
+  def standings
+    @players = Player.all
+
+    if (params[:num_players].to_i > 2)
+      num_players = params[:num_players].to_i
+    else
+      num_players = 4
+    end
+
+
+    @player_stats = []
+    for player in @players
+
+      rounds = Round.where(player_id: player.id)
+      rounds = rounds.select{ |x| x.game.numPlay == num_players.to_i}
+
+      wins = rounds.select{ |x| x.place == 1}.count
+      total_games = rounds.count
+
+
+      #num_players_q = Round.joins(:game).select("games.numPlay").where(game_id: 3, player_id: 1).first
+      #num_players = num_players_q[:numPlay]
+
+      stats = {:wins => wins,
+        :total_games => total_games,
+        :percentage => (wins+0.0)/total_games,
+        :player_id => player.id,
+        :nickname => player.nickname,
+        :player => player }
+
+      if (total_games > 0)
+        @player_stats << stats
+      end
+    end
+    @player_stats = @player_stats.sort_by{|e| -e[:wins]}
+  end
+
   # GET /players/1
   # GET /players/1.json
   def show

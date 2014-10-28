@@ -1,0 +1,33 @@
+
+
+<h1>Standings</h1>
+
+
+<%= link_to "3 Player", standings_players_path(num_players: '3') %>
+<%= link_to "4 Player", standings_players_path(num_players: '4') %>
+<%= link_to "5 Player", standings_players_path(num_players: '5') %>
+<table id ="standings_table" class="table tablesorter">
+  <thead>
+    <tr>
+      <th>Player</th>
+      <th>Games Played</th>
+      <th>Win %</th>
+      <th>Wins</th>
+      <th>Losses</th>
+      <th>High Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @player_stats.each do |ps| %>
+      <tr>
+        <td><%=ps[:nickname] %></td>
+        <td><%=ps[:total_games] %></td>
+        <td><%=number_with_precision(ps[:percentage], :precision=>3)%></td>
+        <td><%=ps[:wins]%></td>
+        <td><%=ps[:total_games]-ps[:wins]%></td>
+        <td><%=ps[:player].rounds.maximum(:score)%></td>
+      </tr>
+    <% end%>
+  </tbody>
+</table>
+

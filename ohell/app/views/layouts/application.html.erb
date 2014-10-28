@@ -51,6 +51,7 @@
             <ul class="nav">
               <li><%= link_to "Players", players_path  %></li>
               <li><%= link_to "Games", games_path  %></li>
+              <li><%= link_to "Standings", standings_players_path %></li>
               
             </ul>
           </div><!--/.nav-collapse -->
@@ -66,12 +67,12 @@
           </div>
           <div class="span3">
             <div class="well sidebar-nav">
-              <h3>Sidebar</h3>
+              <h3>Oh Hell</h3>
               <ul class="nav nav-list">
-                <li class="nav-header">Sidebar</li>
-                <li><%= link_to "Link1", "/path1"  %></li>
-                <li><%= link_to "Link2", "/path2"  %></li>
-                <li><%= link_to "Link3", "/path3"  %></li>
+                <li class="nav-header">New Game</li>
+                <li><%= link_to "3 Player", new_game_path(num_players: '3')  %></li>
+                <li><%= link_to "4 Player", new_game_path(num_players: '4')  %></li>
+                <li><%= link_to "5 Player", new_game_path(num_players: '5')  %></li>
               </ul>
             </div><!--/.well -->
           </div><!--/span-->
