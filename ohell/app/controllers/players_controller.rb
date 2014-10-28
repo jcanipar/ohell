@@ -13,9 +13,9 @@ class PlayersController < ApplicationController
     @players = Player.all
 
     if (params[:num_players].to_i > 2)
-      num_players = params[:num_players].to_i
+      @num_players = params[:num_players].to_i
     else
-      num_players = 4
+      @num_players = 4
     end
 
 
@@ -23,27 +23,17 @@ class PlayersController < ApplicationController
     for player in @players
 
       rounds = Round.where(player_id: player.id)
-      rounds = rounds.select{ |x| x.game.numPlay == num_players.to_i}
+      rounds = rounds.select{ |x| x.game.numPlay == @num_players.to_i}
 
-      wins = rounds.select{ |x| x.place == 1}.count
-      total_games = rounds.count
+      stats = getStats(player, rounds)
 
-
-      #num_players_q = Round.joins(:game).select("games.numPlay").where(game_id: 3, player_id: 1).first
-      #num_players = num_players_q[:numPlay]
-
-      stats = {:wins => wins,
-        :total_games => total_games,
-        :percentage => (wins+0.0)/total_games,
-        :player_id => player.id,
-        :nickname => player.nickname,
-        :player => player }
-
-      if (total_games > 0)
+      if (stats != nil)
         @player_stats << stats
       end
+      
+      end
     end
-    @player_stats = @player_stats.sort_by{|e| -e[:wins]}
+    #@player_stats = @player_stats.sort_by{|e| -e[:wins]}
   end
 
   # GET /players/1
@@ -101,6 +91,29 @@ class PlayersController < ApplicationController
   end
 
   private
+    def getStats(player, rounds)
+      if (rounds.size > 0)
+
+        wins = rounds.select{ |x| x.place == 1}.count
+        total_games = rounds.count
+
+        max = rounds.max_by{|x| x[:score]}.score
+
+        #num_players_q = Round.joins(:game).select("games.numPlay").where(game_id: 3, player_id: 1).first
+        #num_players = num_players_q[:numPlay]
+
+        stats = {:wins => wins,
+          :total_games => total_games,
+          :percentage => (wins+0.0)/total_games,
+          :player_id => player.id,
+          :nickname => player.nickname,
+          :player => player,
+          :max => max
+        }
+
+        return stats
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_player
       @player = Player.find(params[:id])

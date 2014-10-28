@@ -69,10 +69,10 @@
             <div class="well sidebar-nav">
               <h3>Oh Hell</h3>
               <ul class="nav nav-list">
-                <li class="nav-header">New Game</li>
-                <li><%= link_to "3 Player", new_game_path(num_players: '3')  %></li>
-                <li><%= link_to "4 Player", new_game_path(num_players: '4')  %></li>
-                <li><%= link_to "5 Player", new_game_path(num_players: '5')  %></li>
+                <li id="side-header" class="nav-header">New Game</li>
+                <li><%= link_to "3 Player", new_game_path(num_players: '3'), {:id => "link1"}  %></li>
+                <li><%= link_to "4 Player", new_game_path(num_players: '4'), {:id => "link2"}  %></li>
+                <li><%= link_to "5 Player", new_game_path(num_players: '5'), {:id => "link3"}  %></li>
               </ul>
             </div><!--/.well -->
           </div><!--/span-->

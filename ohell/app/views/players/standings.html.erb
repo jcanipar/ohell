@@ -1,11 +1,12 @@
 
 
-<h1>Standings</h1>
+<h1><%=@num_players %> Player Standings</h1>
 
-
-<%= link_to "3 Player", standings_players_path(num_players: '3') %>
-<%= link_to "4 Player", standings_players_path(num_players: '4') %>
-<%= link_to "5 Player", standings_players_path(num_players: '5') %>
+<div class="btn-group">
+  <%= link_to "3 Player", standings_players_path(num_players: '3'), :class=>"btn" %>
+  <%= link_to "4 Player", standings_players_path(num_players: '4'), :class=>"btn" %>
+  <%= link_to "5 Player", standings_players_path(num_players: '5'), :class=>"btn" %>
+</div>
 <table id ="standings_table" class="table tablesorter">
   <thead>
     <tr>
@@ -25,7 +26,7 @@
         <td><%=number_with_precision(ps[:percentage], :precision=>3)%></td>
         <td><%=ps[:wins]%></td>
         <td><%=ps[:total_games]-ps[:wins]%></td>
-        <td><%=ps[:player].rounds.maximum(:score)%></td>
+        <td><%=ps[:max]%></td>
       </tr>
     <% end%>
   </tbody>
