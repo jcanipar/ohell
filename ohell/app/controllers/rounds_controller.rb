@@ -5,6 +5,23 @@ class RoundsController < ApplicationController
   # GET /rounds.json
   def index
     @rounds = Round.all
+
+    if (params[:num_players] != nil)
+      num_players = params[:num_players]
+    else
+      num_players = 4
+    end
+
+    if (params[:sort] == "score")
+      @rounds = @rounds.sort_by{|e| -e[:score]}
+    elsif (params[:sort] == "place")
+      @rounds = @rounds.sort_by{|e| -e[:place]}
+    elsif (params[:sort] == "asterisk")
+      @rounds = @rounds.sort_by{|e| -e[:asterisk]}
+    elsif (params[:sort] == "correct")
+      @rounds = @rounds.sort_by{|e| -e[:correct]}
+    end
+    @rounds = @rounds.select{ |x| x.game.numPlay == num_players.to_i}
   end
 
   # GET /rounds/1

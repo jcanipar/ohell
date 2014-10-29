@@ -1,4 +1,7 @@
+<% game_rounds = @game.rounds.sort_by{|e| e[:place]} %>
+
 <p id="notice"><%= notice %></p>
+
 
 <p>
   
@@ -10,7 +13,7 @@
   <h4><%= @game.numPlay %> Player Game</h4>
 </p>
 
-<table class="table">
+<table id="game_show_table" class="table tablesorter">
 	<tr>
 		<th>Place</th>
 		<th>Player</th>		
@@ -18,7 +21,7 @@
 		<th>Correct</th>
 		<th>*</th>
 	</tr>
-	<% @game.rounds.each do |round| %>
+	<% game_rounds.each do |round| %>
 		<tr>
 			<td><%= round.place %></td>
 			<td><%= round.player.nickname %></td>			

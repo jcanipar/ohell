@@ -31,7 +31,6 @@ class PlayersController < ApplicationController
         @player_stats << stats
       end
       
-      end
     end
     #@player_stats = @player_stats.sort_by{|e| -e[:wins]}
   end
@@ -39,6 +38,17 @@ class PlayersController < ApplicationController
   # GET /players/1
   # GET /players/1.json
   def show
+
+    if (params[:num_players].to_i > 2)
+      @num_players = params[:num_players].to_i
+    else
+      @num_players = 4
+    end
+
+    rounds = Round.where(player_id: @player.id)
+    rounds = rounds.select{ |x| x.game.numPlay == @num_players.to_i}
+
+    @player_stats = getStats(@player, rounds)
   end
 
   # GET /players/new
@@ -99,9 +109,6 @@ class PlayersController < ApplicationController
 
         max = rounds.max_by{|x| x[:score]}.score
 
-        #num_players_q = Round.joins(:game).select("games.numPlay").where(game_id: 3, player_id: 1).first
-        #num_players = num_players_q[:numPlay]
-
         stats = {:wins => wins,
           :total_games => total_games,
           :percentage => (wins+0.0)/total_games,
@@ -112,6 +119,7 @@ class PlayersController < ApplicationController
         }
 
         return stats
+      end
     end
 
     # Use callbacks to share common setup or constraints between actions.

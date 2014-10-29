@@ -10,6 +10,8 @@ class GamesController < ApplicationController
   # GET /games/1
   # GET /games/1.json
   def show
+    #@game.round = @game.rounds.sort_by{|e| e[:place]}
+    #@player_stats = @player_stats.sort_by{|e| -e[:wins]}
   end
 
   # GET /games/new
@@ -21,7 +23,7 @@ class GamesController < ApplicationController
     if players < 3
       players = 4
     end 
-    
+
     players.times {@game.rounds.new} 
     @game.numPlay = players
     

@@ -1,13 +1,17 @@
-<h1>Listing rounds</h1>
-
-<table>
+<h1>Individual Rounds</h1>
+<div class="btn-group">
+  <%= link_to "3 Player", rounds_path(num_players: '3', sort: params[:sort]), :class=>"btn" %>
+  <%= link_to "4 Player", rounds_path(num_players: '4', sort: params[:sort]), :class=>"btn" %>
+  <%= link_to "5 Player", rounds_path(num_players: '5', sort: params[:sort]), :class=>"btn" %>
+</div>
+<table class="table">
   <thead>
     <tr>
-      <th>Game</th>
-      <th>Score</th>
-      <th>Place</th>
-      <th>Correct</th>
-      <th>Asterisk</th>
+      
+      <th><%= link_to 'Score', rounds_path(sort: "score") %></th>
+      <th><%= link_to 'Place', rounds_path(sort: "place") %></th>
+      <th><%= link_to 'Correct', rounds_path(sort: "correct") %></th>
+      <th><%= link_to 'Asterisk', rounds_path(sort: "asterisk")%></th>
       <th>Player</th>
       <th></th>
       <th></th>
@@ -18,15 +22,14 @@
   <tbody>
     <% @rounds.each do |round| %>
       <tr>
-        <td><%= round.game_id %></td>
-        <td><%= round.score %></td>
+        <!--<td><%= round.game_id %></td>-->
+        <td><%= link_to round.score, round.game %></td>
         <td><%= round.place %></td>
         <td><%= round.correct %></td>
         <td><%= round.asterisk %></td>
-        <td><%= round.player_id %></td>
-        <td><%= link_to 'Show', round %></td>
-        <td><%= link_to 'Edit', edit_round_path(round) %></td>
-        <td><%= link_to 'Destroy', round, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= round.player.nickname %></td>
+        <!--<td><%= link_to 'Show', round %></td>-->
+        <!--<td><%= link_to 'Edit', edit_round_path(round) %></td>-->
       </tr>
     <% end %>
   </tbody>

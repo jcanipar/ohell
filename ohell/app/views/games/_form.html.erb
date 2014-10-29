@@ -44,14 +44,14 @@
           <%= ff.collection_select(:player_id, Player.all(:order => 'nickname'), :id, :nickname, { :prompt => 'Select Player' } ) %>
         </td>
         <td>      
-          <%= ff.text_field :score, :placeholder=>"Score" %>
+          <%= ff.text_field :score, :placeholder=>"Score", class: "form-control" %>
         </td>
 
         <td>      
-          <%= ff.text_field :correct, :placeholder=>"Correct" %>
+          <%= ff.text_field :correct, :placeholder=>"Correct", class: "form-control" %>
         </td>
         <td>      
-          <%= ff.text_field :asterisk, :placeholder=>"*" %>
+          <%= ff.text_field :asterisk, :placeholder=>"*", class: "form-control" %>
         </td>
       </tr>
     
