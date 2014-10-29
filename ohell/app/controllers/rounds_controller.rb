@@ -7,9 +7,9 @@ class RoundsController < ApplicationController
     @rounds = Round.all
 
     if (params[:num_players] != nil)
-      num_players = params[:num_players]
+      @num_players = params[:num_players]
     else
-      num_players = 4
+      @num_players = 4
     end
 
     if (params[:sort] == "score")
@@ -21,7 +21,7 @@ class RoundsController < ApplicationController
     elsif (params[:sort] == "correct")
       @rounds = @rounds.sort_by{|e| -e[:correct]}
     end
-    @rounds = @rounds.select{ |x| x.game.numPlay == num_players.to_i}
+    @rounds = @rounds.select{ |x| x.game.numPlay == @num_players.to_i}
   end
 
   # GET /rounds/1

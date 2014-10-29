@@ -1,4 +1,5 @@
 <h1>Individual Rounds</h1>
+<h3><%= @num_players %> Player Games</h3>
 <div class="btn-group">
   <%= link_to "3 Player", rounds_path(num_players: '3', sort: params[:sort]), :class=>"btn" %>
   <%= link_to "4 Player", rounds_path(num_players: '4', sort: params[:sort]), :class=>"btn" %>
@@ -27,7 +28,7 @@
         <td><%= round.place %></td>
         <td><%= round.correct %></td>
         <td><%= round.asterisk %></td>
-        <td><%= round.player.nickname %></td>
+        <td><%= link_to round.player.nickname, round.player %></td>
         <!--<td><%= link_to 'Show', round %></td>-->
         <!--<td><%= link_to 'Edit', edit_round_path(round) %></td>-->
       </tr>
