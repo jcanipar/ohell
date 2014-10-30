@@ -25,7 +25,8 @@ class PlayersController < ApplicationController
       rounds = Round.where(player_id: player.id)
       rounds = rounds.select{ |x| x.game.numPlay == @num_players.to_i}
 
-      stats = getStats(player, rounds)
+      stats = get_empty_stats
+      stats = getStats(player, rounds, stats)
 
       if (stats != nil)
         @player_stats << stats
@@ -39,16 +40,24 @@ class PlayersController < ApplicationController
   # GET /players/1.json
   def show
 
-    if (params[:num_players].to_i > 2)
-      @num_players = params[:num_players].to_i
-    else
-      @num_players = 4
+    rounds_all = Round.where(player_id: @player.id)
+    rounds_three = rounds_all.select{ |x| x.game.numPlay == 3}
+    rounds_four = rounds_all.select{ |x| x.game.numPlay == 4}
+    rounds_five = rounds_all.select{ |x| x.game.numPlay == 5}
+
+    @three_player_stats = get_empty_stats
+    @four_player_stats = get_empty_stats
+    @five_player_stats = get_empty_stats
+
+    if (rounds_three.size > 0)
+      @three_player_stats = getStats(@player, rounds_three, @three_player_stats)
     end
-
-    rounds = Round.where(player_id: @player.id)
-    rounds = rounds.select{ |x| x.game.numPlay == @num_players.to_i}
-
-    @player_stats = getStats(@player, rounds)
+    if (rounds_four.size >0)
+      @four_player_stats = getStats(@player, rounds_four, @four_player_stats)
+    end
+    if (rounds_five.size>0)
+      @five_player_stats = getStats(@player, rounds_five, @five_player_stats)
+    end
   end
 
   # GET /players/new
@@ -101,7 +110,7 @@ class PlayersController < ApplicationController
   end
 
   private
-    def getStats(player, rounds)
+    def getStats(player, rounds, stats)
       if (rounds.size > 0)
 
         wins = rounds.select{ |x| x.place == 1}.count
@@ -120,6 +129,17 @@ class PlayersController < ApplicationController
 
         return stats
       end
+    end
+
+    def get_empty_stats() 
+      stats = {:wins => 0,
+        :total_games => 0,
+        :percentage => 0.0,
+        :player_id => 0,
+        :nickname => "",
+        :player => "",
+        :max => 0
+      }
     end
 
     # Use callbacks to share common setup or constraints between actions.

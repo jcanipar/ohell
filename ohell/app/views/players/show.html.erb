@@ -1,26 +1,32 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Firstname:</strong>
-  <%= @player.firstname %>
-</p>
+<h1><%=@player.firstname %> "<%=@player.nickname%>" <%=@player.lastname%></h1>
+<% if @player.team %>
+	<h3>Team</h3>
+<% end %>
 
-<p>
-  <strong>Lastname:</strong>
-  <%= @player.lastname %>
-</p>
+<% if(@three_player_stats[:total_games] > 0 or @four_player_stats[:total_games] > 0 or @five_player_stats[:total_games] > 0 ) %>
 
-<p>
-  <strong>Nickname:</strong>
-  <%= @player.nickname %>
-</p>
+	<table class="table table-striped"%>
+		<thead>
+			<tr>
+				<th>Players</th>
+				<th>Games Played</th>
+				<th>Wins</th>			
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>3 Players</td>
+				<td><%=@three_player_stats[:total_games] %></td>
+				<td><%=@three_player_stats[:wins] %></td>
+			</tr>
+		</tbody>
 
-<p>
-  <strong>Team:</strong>
-  <%= @player.team %>
-</p>
-
-<%= @player_stats[:wins] %>
+	</table>
+<% else %>
+	<h2>No Games Played</h2>
+<% end %>
 
 <%= link_to 'Edit', edit_player_path(@player) %> |
 <%= link_to 'Back', players_path %>

@@ -20,6 +20,8 @@ class RoundsController < ApplicationController
       @rounds = @rounds.sort_by{|e| -e[:asterisk]}
     elsif (params[:sort] == "correct")
       @rounds = @rounds.sort_by{|e| -e[:correct]}
+    else 
+      @rounds = @rounds.sort_by{|e| -e[:score]}
     end
     @rounds = @rounds.select{ |x| x.game.numPlay == @num_players.to_i}
   end
