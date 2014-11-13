@@ -8,12 +8,12 @@
 <table class="table">
   <thead>
     <tr>
-      
-      <th><%= link_to 'Score', rounds_path(sort: "score") %></th>
-      <th><%= link_to 'Place', rounds_path(sort: "place") %></th>
-      <th><%= link_to 'Correct', rounds_path(sort: "correct") %></th>
-      <th><%= link_to 'Tricks Taken', rounds_path(sort: "taken") %></th>
-      <th><%= link_to 'Asterisk', rounds_path(sort: "asterisk")%></th>
+      <th></th>
+      <th><%= link_to 'Score', rounds_path(sort: "score", num_players: @num_players) %></th>
+      <th><%= link_to 'Place', rounds_path(sort: "place", num_players: @num_players) %></th>
+      <th><%= link_to 'Correct', rounds_path(sort: "correct", num_players: @num_players) %></th>
+      <th><%= link_to 'Tricks Taken', rounds_path(sort: "taken", num_players: @num_players) %></th>
+      <th><%= link_to 'Asterisk', rounds_path(sort: "asterisk", num_players: @num_players)%></th>
       <th>Player</th>
       <th></th>
       <th></th>
@@ -21,10 +21,14 @@
     </tr>
   </thead>
 
+
+  <% count = 0 %>
   <tbody>
     <% @rounds.each do |round| %>
+    <% count = count + 1 %>
       <tr>
         <!--<td><%= round.game_id %></td>-->
+        <td><%= count %></td>
         <td><%= link_to round.score, round.game %></td>
         <td><%= round.place %></td>
         <td><%= round.correct %></td>
