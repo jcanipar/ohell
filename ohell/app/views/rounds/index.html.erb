@@ -12,6 +12,7 @@
       <th><%= link_to 'Score', rounds_path(sort: "score") %></th>
       <th><%= link_to 'Place', rounds_path(sort: "place") %></th>
       <th><%= link_to 'Correct', rounds_path(sort: "correct") %></th>
+      <th><%= link_to 'Tricks Taken', rounds_path(sort: "taken") %></th>
       <th><%= link_to 'Asterisk', rounds_path(sort: "asterisk")%></th>
       <th>Player</th>
       <th></th>
@@ -27,6 +28,7 @@
         <td><%= link_to round.score, round.game %></td>
         <td><%= round.place %></td>
         <td><%= round.correct %></td>
+        <td><%= round.score - (round.correct*10) %></td>
         <td><%= round.asterisk %></td>
         <td><%= link_to round.player.nickname, round.player %></td>
         <!--<td><%= link_to 'Show', round %></td>-->

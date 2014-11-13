@@ -20,6 +20,8 @@ class RoundsController < ApplicationController
       @rounds = @rounds.sort_by{|e| -e[:asterisk]}
     elsif (params[:sort] == "correct")
       @rounds = @rounds.sort_by{|e| -e[:correct]}
+    elsif (params[:sort] == "taken")
+      @rounds = @rounds.sort_by{|e| -(e.tricks_taken)}
     else 
       @rounds = @rounds.sort_by{|e| -e[:score]}
     end

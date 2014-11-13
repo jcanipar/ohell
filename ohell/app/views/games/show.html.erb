@@ -20,6 +20,7 @@
 		<th>Player</th>		
 		<th>Score</th>
 		<th>Correct</th>
+		<th>Tricks Taken</th>
 		<th>*</th>
 	</tr>
 	<% game_rounds.each do |round| %>
@@ -28,6 +29,7 @@
 			<td><%= round.player.nickname %></td>			
 			<td><%= round.score %></td>
 			<td><%= round.correct %></td>
+			<td><%= round.score - (10*round.correct) %></td>
 			<td><%= round.asterisk %></td>
 		</tr>
 	<% end %>	

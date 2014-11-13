@@ -110,6 +110,7 @@ class PlayersController < ApplicationController
   end
 
   private
+  #Figure out how to do average place
     def getStats(player, rounds, stats)
       if (rounds.size > 0)
 
