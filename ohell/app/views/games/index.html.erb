@@ -1,6 +1,10 @@
 <h1>List of All Games</h1>
 
-<table class="table">
+<div class="btn-group">  
+  <%= link_to 'New Game', new_game_path, :class=>"btn btn-success"  %>
+</div>
+
+<table class="table table-striped table-hover">
   <thead>
     <tr>
       <th>Date</th>
@@ -28,4 +32,4 @@
 
 <br>
 
-<%= link_to 'New Game', new_game_path %>
+
