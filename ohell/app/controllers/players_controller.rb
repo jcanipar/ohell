@@ -40,10 +40,10 @@ class PlayersController < ApplicationController
   # GET /players/1.json
   def show
 
-    rounds_all = Round.where(player_id: @player.id)
-    rounds_three = rounds_all.select{ |x| x.game.numPlay == 3}
-    rounds_four = rounds_all.select{ |x| x.game.numPlay == 4}
-    rounds_five = rounds_all.select{ |x| x.game.numPlay == 5}
+    @rounds_all = Round.where(player_id: @player.id)
+    rounds_three = @rounds_all.select{ |x| x.game.numPlay == 3}
+    rounds_four = @rounds_all.select{ |x| x.game.numPlay == 4}
+    rounds_five = @rounds_all.select{ |x| x.game.numPlay == 5}
 
     @three_player_stats = get_empty_stats
     @four_player_stats = get_empty_stats
@@ -58,6 +58,7 @@ class PlayersController < ApplicationController
     if (rounds_five.size>0)
       @five_player_stats = getStats(@player, rounds_five, @five_player_stats)
     end
+
   end
 
   # GET /players/new
