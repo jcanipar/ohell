@@ -1,4 +1,4 @@
-<h1>List of All Games</h1>
+<h1>All Games</h1>
 
 <div class="btn-group">  
   <%= link_to 'New Game', new_game_path, :class=>"btn btn-success"  %>
@@ -8,23 +8,18 @@
   <thead>
     <tr>
       <th>Date</th>
-      <th>Number of Players</th>
-      <th>League</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th>Number of Players</th>      
+      <th></th>      
     </tr>
   </thead>
 
   <tbody>
     <% @games.each do |game| %>
       <tr>
-        <td><%= game.date.strftime("%B %d, %Y") %></td>
-        <td><%= game.numPlay %></td>
-        <td><% if game.league %>Yes<% else %>No<% end %></td>
-        <td><%= link_to 'Show', game %></td>
-        <td><%= link_to 'Edit', edit_game_path(game) %></td>
-        <td><%= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to game.date.strftime("%B %d, %Y"), game %></td>
+        <td><%= game.numPlay %></td>        
+        <td><%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_game_path(game) %>
+        <%= link_to '<i class="icon-trash"></i>'.html_safe, game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

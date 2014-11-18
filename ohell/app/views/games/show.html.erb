@@ -1,6 +1,6 @@
 <% game_rounds = @game.rounds.sort_by{|e| e[:place]} %>
 
-<p id="notice"><%= notice %></p>
+
 
 
 <p>
@@ -14,7 +14,7 @@
   <%= link_to 'Edit', edit_game_path(@game) %>
 </p>
 
-<table id="game_show_table" class="table tablesorter">
+<table id="game_show_table" class="table tablesorter table-striped table-hover">
 	<tr>
 		<th>Place</th>
 		<th>Player</th>		
@@ -35,4 +35,10 @@
 	<% end %>	
 </table>
 
+<% if @game.description != nil and @game.description != "" %>
+	<p>
+		<h4>Notes:</h4>
+		<%= @game.description %>
+	</p>
+<% end %>
 

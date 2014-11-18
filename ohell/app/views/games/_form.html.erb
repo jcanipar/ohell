@@ -57,6 +57,15 @@
     
       <%end%>
     </table>
+
+  <div class="field">
+    <%= f.text_area :description, :placeholder=>"Description", :rows=>5 %>
+  </div>
+
+  <div class="field">
+    <%= f.hidden_field :league, :value=>false %>
+  </div>
+
     <div class="actions">
     <%= f.submit %>
   </div>

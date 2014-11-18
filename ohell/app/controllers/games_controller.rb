@@ -5,7 +5,7 @@ class GamesController < ApplicationController
   # GET /games.json
   def index
     @games = Game.all
-    @games = @games.sort_by{|e| e[:date]}
+    @games = Game.order(date: :desc)
   end
 
   # GET /games/1
@@ -82,7 +82,7 @@ class GamesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def game_params
-      params.require(:game).permit(:date, :numPlay, :league, 
+      params.require(:game).permit(:date, :numPlay, :description, :league, 
         rounds_attributes: [:score, :place, :correct, :asterisk, :player_id, :id])
     end
 end

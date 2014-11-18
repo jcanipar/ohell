@@ -4,7 +4,16 @@ class PlayersController < ApplicationController
   # GET /players
   # GET /players.json
   def index
-    @players = Player.all
+    if (params[:show_teams])
+      @players = Player.where(team: true)
+    elsif (params[:all_players])
+      @players = Player.all()
+      @players = @players.sort_by{ |x| -x.rounds.size}
+    else
+      @players = Player.where(team: false)
+      @players = @players.select{ |x| x.rounds.size > 0}
+      @players = @players.sort_by{ |x| -x.rounds.size}
+    end
   end
 
   # GET /players
