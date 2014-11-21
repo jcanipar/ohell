@@ -31,9 +31,11 @@ test:
 
 production:
   adapter: mysql2
-  encoding: utf8
-  database: ohell_production
-  pool: 5
-  username: root
-  password:
-  socket: /tmp/mysql.sock
+  database: "<%=ENV['OPENSHIFT_APP_NAME']%>"
+  username: "<%=ENV['OPENSHIFT_MYSQL_DB_USERNAME']%>"
+  password: "<%=ENV['OPENSHIFT_MYSQL_DB_PASSWORD']%>"
+  host:     <%=ENV['OPENSHIFT_MYSQL_DB_HOST']%>
+  port:     <%=ENV['OPENSHIFT_MYSQL_DB_PORT']%>
+  socket:   <%=ENV['OPENSHIFT_MYSQL_DB_SOCKET']%>
+  
+
