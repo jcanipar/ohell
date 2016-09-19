@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  bid: 1
+  got: 1
+  player_id: 1
+  round_num: 1
+  game_id: 1
+
+two:
+  bid: 1
+  got: 1
+  player_id: 1
+  round_num: 1
+  game_id: 1

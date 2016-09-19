@@ -15,6 +15,13 @@ class GamesController < ApplicationController
     #@player_stats = @player_stats.sort_by{|e| -e[:wins]}
   end
 
+  def scorecard
+    @game = Game.new
+    4.times {@game.rounds.new}
+    @game.numPlay = 4
+  end
+
+
   # GET /games/new
   def new
     @game = Game.new

@@ -1,0 +1,82 @@
+<%= form_for @game, :html => {:class => 'form-inline'} do |f| %>
+  <% if @game.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@game.errors.count, "error") %> prohibited this game from being saved:</h2>
+
+      <ul>
+      <% @game.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <br>
+  <div class="field">
+    <%= f.label :date %><br>
+    <%= f.text_field :date, :class => 'datepicker' %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :numPlay, :value=>@game.numPlay %>
+  </div>
+
+  <br><br>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <td colspan=2>&nbsp;</td>
+        <td colspan=3>Jacob</td>
+        <td colspan=3>Adam</td>
+        <td colspan=3>Don</td>        
+        <td colspan=3>ScorpionFire</td>        
+      </tr>
+    </thead>
+
+    <tr>
+      <td>Round</td>
+      <td>*</td>
+      <td>Bid</td>
+      <td>Got</td>
+      <td>Score</td>
+      <td>Bid</td>
+      <td>Got</td>
+      <td>Score</td>
+      <td>Bid</td>
+      <td>Got</td>
+      <td>Score</td>
+    </tr>
+
+    <tr>
+      <td>&nbsp;</td>
+      <td><%= f.text_field :placeholder=>'0'%></td>
+      <td><%= f.text_field :placeholder=>0%></td>
+      <td><%= f.text_field :placeholder=>0%></td>
+      <td><%= f.text_field :placeholder=>0%></td>
+      <td><%= f.text_field :placeholder=>0%></td>
+      <td><%= f.text_field :placeholder=>0%></td>
+      <td><%= f.text_field :placeholder=>0%></td>
+      <td><%= f.text_field :placeholder=>0%></td>
+      <td><%= f.text_field :placeholder=>0%></td>
+      <td><%= f.text_field :placeholder=>0%></td>
+      <td><%= f.text_field :placeholder=>0%></td>
+      <td><%= f.text_field :placeholder=>0%></td>
+    </tr>
+
+
+
+    </table>
+
+  <div class="field">
+    <%= f.text_area :description, :placeholder=>"Description", :rows=>5 %>
+  </div>
+
+  <div class="field">
+    <%= f.hidden_field :league, :value=>false %>
+  </div>
+
+    <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+

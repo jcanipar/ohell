@@ -1,4 +1,6 @@
 Ohell::Application.routes.draw do
+  resources :hands
+
   resources :players do
     get 'standings', :on => :collection
   end
@@ -8,6 +10,7 @@ Ohell::Application.routes.draw do
   resources :rounds
 
   resources :games do
+    get 'scorecard', :on => :collection
     resources :rounds
   end
 

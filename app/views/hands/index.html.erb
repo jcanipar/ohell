@@ -1,0 +1,35 @@
+<h1>Listing hands</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Bid</th>
+      <th>Got</th>
+      <th>Player</th>
+      <th>Round num</th>
+      <th>Game</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @hands.each do |hand| %>
+      <tr>
+        <td><%= hand.bid %></td>
+        <td><%= hand.got %></td>
+        <td><%= hand.player_id %></td>
+        <td><%= hand.round_num %></td>
+        <td><%= hand.game_id %></td>
+        <td><%= link_to 'Show', hand %></td>
+        <td><%= link_to 'Edit', edit_hand_path(hand) %></td>
+        <td><%= link_to 'Destroy', hand, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Hand', new_hand_path %>
