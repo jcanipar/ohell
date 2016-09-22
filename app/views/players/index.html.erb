@@ -14,7 +14,6 @@
       <th>Last</th>
       <th>Nickname</th>
       <th>Games Played</th>
-      <th>Team</th>
       <th></th>
       <th></th>
       <th></th>
@@ -27,8 +26,7 @@
         <td><%= link_to player.firstname, player %></td>
         <td><%= link_to player.lastname, player %></td>
         <td><%= link_to player.nickname, player %></td>
-        <td><%= player.games_played%></td>
-        <td><% if player.team %>Yes<% else %>No<% end %></td>
+        <td><%= player.games_played%></td>      
         <td><%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_player_path(player) %></td>
         <td><%= link_to '<i class="icon-trash"></i>'.html_safe, player, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

@@ -49,7 +49,7 @@
           <%= ff.hidden_field :place, :placeholder=>"Place", :value=>player_count %>
         </td>
         <td>      
-          <%= ff.collection_select(:player_id, Player.all(:order => 'nickname'), :id, :nickname, { :prompt => 'Select Player' } ) %>
+          <%= ff.collection_select(:player_id, Player.where(team: false).order(nickname: :asc), :id, :nickname, { :prompt => 'Select Player' } ) %>
         </td>
         <td>      
           <%= ff.text_field :score, :placeholder=>"Score", class: "form-control" %>
