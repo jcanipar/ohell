@@ -31,6 +31,7 @@ gem 'bootstrap_form'
 
 gem 'bootstrap-datepicker-rails'
 
+
 gem 'turbo-sprockets-rails3'
 
 # Use jquery as the JavaScript library
