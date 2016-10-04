@@ -4,6 +4,7 @@ Ohell::Application.routes.draw do
 
   get 'users' => 'users#users'
   get 'users/make_admin/:id' => 'users#make_admin', :as=> :make_user_admin
+  get 'users/approve/:id' => 'users#approve', :as=> :approve_user
 
   resources :players do
     get 'standings', :on => :collection

@@ -28,8 +28,14 @@
         </td>
         <td>
           <% if !user.admin? %>
-            <%=link_to 'Make Admin', make_user_admin_path(id: user.id)%></td>
+            <%=link_to 'Make Admin', make_user_admin_path(id: user.id)%>
           <% end %>
+        </td>
+        <td>
+          <% if !user.approved? %>
+            <%= link_to 'Approve', approve_user_path(id: user.id) %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
