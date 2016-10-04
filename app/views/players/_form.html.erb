@@ -24,8 +24,7 @@
     <%= f.text_field :nickname %>
   </div>
   <div class="field">
-    <%= f.label :team %><br>
-    <%= f.check_box :team %>
+    <%= f.hidden_field :team, :value=>false %>
   </div>
   <div class="actions">
     <%= f.submit %>
