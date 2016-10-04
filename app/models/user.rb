@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
 
   def inactive_message 
     if !approved? 
-      "Fuck you bitch, not approved!"
+      :not_approved 
     else 
       super # Use whatever other message 
     end 

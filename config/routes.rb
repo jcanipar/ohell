@@ -2,8 +2,12 @@ Ohell::Application.routes.draw do
   devise_for :users
   resources :hands
 
+  get 'users' => 'users#users'
+  get 'users/make_admin/:id' => 'users#make_admin', :as=> :make_user_admin
+
   resources :players do
     get 'standings', :on => :collection
+
   end
 
   resources :people

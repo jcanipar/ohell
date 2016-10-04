@@ -1,0 +1,38 @@
+<h1>Users</h1>
+
+<table class="table table-striped table-hover">
+  <thead>    
+    <tr>
+      <th>Email</th>
+      <th>Admin?</th>
+      <th>Approved</th>
+      <th>Login Count</th>
+      <th>Last Login</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>    
+    <% @users.each do |user| %>
+      <tr>
+        <td><%=user.email%></td>
+        <td><%=user.admin?%></td>
+        <td><%=user.approved?%></td>
+        <td><%=user.sign_in_count%></td>
+        <td>
+          <% if user.last_sign_in_at.nil?  %>
+            Never
+          <% else %>
+            <%=user.last_sign_in_at.strftime("%B %d, %Y") %>
+          <% end %>
+        </td>
+        <td>
+          <% if !user.admin? %>
+            <%=link_to 'Make Admin', make_user_admin_path(id: user.id)%></td>
+          <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+ 
+
