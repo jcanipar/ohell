@@ -31,6 +31,7 @@ gem 'bootstrap_form'
 
 gem 'bootstrap-datepicker-rails'
 
+gem 'devise'
 
 #gem 'turbo-sprockets-rails3'
 

@@ -1,4 +1,5 @@
 Ohell::Application.routes.draw do
+  devise_for :users
   resources :hands
 
   resources :players do
