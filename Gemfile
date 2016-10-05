@@ -23,7 +23,7 @@ gem 'coffee-rails', '~> 4.0.0'
 
 ##Stuff I have added
 #User twitter bootstrap
-gem 'twitter-bootstrap-rails'
+gem 'twitter-bootstrap-rails', '2.2.8'
 
 gem 'less-rails'
 
