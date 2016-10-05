@@ -34,6 +34,8 @@ gem 'bootstrap-datepicker-rails'
 
 gem 'devise'
 
+gem 'rack', '1.5.5'
+
 #gem 'turbo-sprockets-rails3'
 
 # Use jquery as the JavaScript library

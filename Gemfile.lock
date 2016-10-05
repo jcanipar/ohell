@@ -151,6 +151,7 @@ DEPENDENCIES
   jquery-rails
   less-rails
   mysql2 (~> 0.3.18)
+  rack (= 1.5.5)
   rails (= 4.0.2)
   sass-rails (~> 4.0.0)
   sdoc
