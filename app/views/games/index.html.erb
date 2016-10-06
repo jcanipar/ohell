@@ -8,7 +8,8 @@
   <thead>
     <tr>
       <th>Date</th>
-      <th>Number of Players</th>      
+      <th><div class="text-center">Number of Players</div></th>      
+      <th>Winner</th>
       <th></th>      
     </tr>
   </thead>
@@ -17,7 +18,8 @@
     <% @games.each do |game| %>
       <tr>
         <td><%= link_to game.date.strftime("%B %d, %Y"), game %></td>
-        <td><%= game.numPlay %></td>        
+        <td><div class="text-center"><%= link_to game.numPlay, game %></div></td>       
+        <td><%= link_to game.winner.nickname, game%></td> 
         <td><%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_game_path(game) %>
         <%= link_to '<i class="icon-trash"></i>'.html_safe, game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
