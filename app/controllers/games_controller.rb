@@ -39,16 +39,34 @@ class GamesController < ApplicationController
 
   # GET /games/1/edit
   def edit
+    @game = Game.find(params[:id])
+    
+    @game.rounds.sort_by{|e| e[:place]}
+    @game.rounds.each do |round|
+      puts round.score.to_s
+    end
   end
 
   # POST /games
   # POST /games.json
   def create
-    @game = Game.new(game_params)
+    temp_game = Game.new(game_params)
+
+    message = ""
+    temp_rounds = temp_game.rounds.sort_by{|e| -e[:score]}
+    place = 0
+    @game = temp_game
+    temp_rounds.each do |round|
+      place = place + 1
+      round.place = place
+      @game.rounds << round
+      message = message + " " + round.player.nickname + " place set to " + place.to_s
+    end
+
 
     respond_to do |format|
       if @game.save
-        format.html { redirect_to @game, notice: 'Game was successfully created.' }
+        format.html { redirect_to @game, notice: message }
         format.json { render action: 'show', status: :created, location: @game }
       else
         format.html { render action: 'new' }
@@ -60,9 +78,52 @@ class GamesController < ApplicationController
   # PATCH/PUT /games/1
   # PATCH/PUT /games/1.json
   def update
+
+    atts = game_params[:rounds_attributes]
+
+    temp_rounds = []
+    temp_rounds_ordered = []
+
+    #go through the rounds, add them to an array
+    atts.each do |round|
+      around = Round.new(round[1])
+      temp_rounds << around
+      puts around.to_s
+      puts around.id.to_s
+      puts round[1].class
+    end
+
+    #sort the new round order
+    temp_rounds = temp_rounds.sort_by{|e| -e[:score]}
+    place = 0
+    
+
+    #set the correct place in the temp array
+    temp_rounds.each do |round|
+      place = place + 1
+      round.place = place
+      temp_rounds_ordered << round
+    end
+
+    @game = Game.find(params[:id])
+
+    @game.rounds.each do |round|      
+      temp_rounds_ordered.each do |tr|        
+        if tr.id == round.id          
+          round.place = tr.place
+          round.player_id = tr.player_id
+          round.score = tr.score
+          round.asterisk = tr.asterisk
+          round.correct = tr.correct
+        end
+      end
+    end
+
+    puts @game.rounds.size
+
     respond_to do |format|
-      if @game.update(game_params)
-        format.html { redirect_to @game, notice: 'Game was successfully updated.' }
+      if @game.save
+        format.html { redirect_to @game, notice: "Game updated successfully!" }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

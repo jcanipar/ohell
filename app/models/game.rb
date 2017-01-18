@@ -1,6 +1,6 @@
 class Game < ActiveRecord::Base
 
-    has_many :rounds
+   has_many :rounds, :order => 'place DESC'
 	accepts_nested_attributes_for :rounds
 
    	def winner_by_id

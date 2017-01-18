@@ -1,3 +1,4 @@
+
 <%= form_for @game, :html => {:class => 'form-inline'} do |f| %>
   <% if @game.errors.any? %>
     <div id="error_explanation">
@@ -32,7 +33,7 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>Place</th>
+        <th></th>
         <th>Name</th>
         <th>Score</th>        
         <th>Correct</th>
@@ -45,7 +46,7 @@
       <% player_count = player_count + 1 %>
       <tr>
         <td>      
-          <%= player_count %>
+          
           <%= ff.hidden_field :place, :placeholder=>"Place", :value=>player_count %>
         </td>
         <td>      
