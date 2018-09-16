@@ -33,7 +33,7 @@ class GamesController < ApplicationController
     end 
 
     players.times {@game.rounds.new} 
-    @game.numPlay = players
+    @game.numplay = players
     
   end
 
@@ -119,6 +119,9 @@ class GamesController < ApplicationController
       end
     end
 
+    @game.description = game_params[:description]
+    @game.date = game_params[:date]
+
     puts @game.rounds.size
 
     respond_to do |format|
@@ -150,7 +153,7 @@ class GamesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def game_params
-      params.require(:game).permit(:date, :numPlay, :description, :league, 
+      params.require(:game).permit(:date, :numplay, :description, :league, 
         rounds_attributes: [:score, :place, :correct, :asterisk, :player_id, :id])
     end
 end

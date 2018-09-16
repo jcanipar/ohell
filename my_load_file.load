@@ -1,0 +1,4 @@
+LOAD DATABASE
+   FROM mysql://root@localhost/ohell_development
+   INTO pgsql:///ohell_development
+ALTER schema 'ohell_development' rename to 'public';

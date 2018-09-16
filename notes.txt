@@ -1,0 +1,3 @@
+Migrate mysql db to postgres:
+	mysql://root@localhost/ohell_development pgsql:///ohell_development
+

@@ -67,7 +67,7 @@
 		<% for round in @rounds_all %>
 			<tr>
 				<td><%= link_to round.game.date.strftime("%B %d, %Y"), round.game %></td>
-				<td><%=round.game.numPlay%></td>
+				<td><%=round.game.numplay%></td>
 				<td><%= link_to round.score, round.game %></td>
 				<td><%=round.place %></td>
 				<td><%=round.correct %></td>

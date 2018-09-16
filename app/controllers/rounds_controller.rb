@@ -25,7 +25,7 @@ class RoundsController < ApplicationController
     else 
       @rounds = @rounds.sort_by{|e| -e[:score]}
     end
-    @rounds = @rounds.select{ |x| x.game.numPlay == @num_players.to_i}
+    @rounds = @rounds.select{ |x| x.game.numplay == @num_players.to_i}
   end
 
   # GET /rounds/1

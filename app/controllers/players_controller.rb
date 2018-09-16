@@ -34,7 +34,7 @@ class PlayersController < ApplicationController
     for player in @players
 
       rounds = Round.where(player_id: player.id)
-      rounds = rounds.select{ |x| x.game.numPlay == @num_players.to_i}
+      rounds = rounds.select{ |x| x.game.numplay == @num_players.to_i}
 
       stats = get_empty_stats
       stats = getStats(player, rounds, stats)
@@ -52,9 +52,9 @@ class PlayersController < ApplicationController
   def show
 
     @rounds_all = Round.where(player_id: @player.id)
-    rounds_three = @rounds_all.select{ |x| x.game.numPlay == 3}
-    rounds_four = @rounds_all.select{ |x| x.game.numPlay == 4}
-    rounds_five = @rounds_all.select{ |x| x.game.numPlay == 5}
+    rounds_three = @rounds_all.select{ |x| x.game.numplay == 3}
+    rounds_four = @rounds_all.select{ |x| x.game.numplay == 4}
+    rounds_five = @rounds_all.select{ |x| x.game.numplay == 5}
 
     @three_player_stats = get_empty_stats
     @four_player_stats = get_empty_stats
