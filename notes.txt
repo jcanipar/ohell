@@ -1,3 +1,8 @@
 Migrate mysql db to postgres:
 	mysql://root@localhost/ohell_development pgsql:///ohell_development
 
+Export pg database
+pg_dump --format=c ohell_development > export.sql
+
+Restore pg database
+heroku pg:backups:restore 'http://jacobcaniparoli.net/export.sql' DATABASE_URL
