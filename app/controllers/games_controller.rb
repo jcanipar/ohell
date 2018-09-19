@@ -50,7 +50,26 @@ class GamesController < ApplicationController
   # POST /games
   # POST /games.json
   def create
-    temp_game = Game.new(game_params)
+    temp_game = Game.new()
+    temp_game.date = game_params[:date].to_date
+    temp_game.numplay = game_params[:numplay]
+    temp_game.description = game_params[:description]
+
+    puts game_params[:rounds_attributes]
+
+    game_params[:rounds_attributes].each do |r|
+      puts "0: " + r[0]
+      puts "1: " + r[1][:score]
+      # score = r[1][:score]
+      # place = r[1][:place]
+      # correct = r[1][:correct]
+      # asterisk = r[1][:asterisk]
+      # player_id = r[1][:player_id]
+      myround = Round.new(r[1])
+      temp_game.rounds << myround
+    end
+
+    puts temp_game
 
     message = ""
     temp_rounds = temp_game.rounds.sort_by{|e| -e[:score]}
@@ -120,7 +139,7 @@ class GamesController < ApplicationController
     end
 
     @game.description = game_params[:description]
-    @game.date = game_params[:date]
+    @game.date = game_params[:date].to_date
 
     puts @game.rounds.size
 
@@ -138,6 +157,7 @@ class GamesController < ApplicationController
   # DELETE /games/1
   # DELETE /games/1.json
   def destroy
+    puts @game.date.to_s
     @game.destroy
     respond_to do |format|
       format.html { redirect_to games_url }

@@ -25,6 +25,12 @@ class RoundsController < ApplicationController
     else 
       @rounds = @rounds.sort_by{|e| -e[:score]}
     end
+    puts @num_players
+    @rounds.each do | r |
+      puts r.id
+      puts r.game.date
+      puts r.game.numplay
+    end
     @rounds = @rounds.select{ |x| x.game.numplay == @num_players.to_i}
   end
 

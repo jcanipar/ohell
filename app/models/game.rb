@@ -1,6 +1,6 @@
 class Game < ActiveRecord::Base
 
-   has_many :rounds, -> { order 'place desc' }
+   has_many :rounds, -> { order 'place desc' }, dependent: :destroy
    #:order => 'place DESC'
 	accepts_nested_attributes_for :rounds
 
