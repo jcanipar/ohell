@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161004044651) do
+ActiveRecord::Schema.define(version: 20190301110454) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "boxes", force: true do |t|
     t.string   "name"
@@ -42,19 +45,42 @@ ActiveRecord::Schema.define(version: 20161004044651) do
 
   create_table "games", force: true do |t|
     t.datetime "date"
-    t.integer  "numPlay"
+    t.integer  "numplay",     limit: 8
     t.boolean  "league"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "description"
+    t.boolean  "backwards"
+    t.boolean  "notrump"
+  end
+
+  create_table "games", force: true do |t|
+    t.datetime "date"
+    t.integer  "numplay",     limit: 8
+    t.boolean  "league"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "description"
+    t.boolean  "backwards"
+    t.boolean  "notrump"
   end
 
   create_table "hands", force: true do |t|
-    t.integer  "bid"
-    t.integer  "got"
-    t.integer  "player_id"
-    t.integer  "round_num"
-    t.integer  "game_id"
+    t.integer  "bid",        limit: 8
+    t.integer  "got",        limit: 8
+    t.integer  "player_id",  limit: 8
+    t.integer  "round_num",  limit: 8
+    t.integer  "game_id",    limit: 8
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "hands", force: true do |t|
+    t.integer  "bid",        limit: 8
+    t.integer  "got",        limit: 8
+    t.integer  "player_id",  limit: 8
+    t.integer  "round_num",  limit: 8
+    t.integer  "game_id",    limit: 8
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -86,6 +112,24 @@ ActiveRecord::Schema.define(version: 20161004044651) do
     t.datetime "updated_at"
   end
 
+  create_table "people", force: true do |t|
+    t.string   "firstname"
+    t.string   "lastname"
+    t.string   "nickname"
+    t.boolean  "team"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "players", force: true do |t|
+    t.string   "firstname"
+    t.string   "lastname"
+    t.string   "nickname"
+    t.boolean  "team"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "players", force: true do |t|
     t.string   "firstname"
     t.string   "lastname"
@@ -96,12 +140,23 @@ ActiveRecord::Schema.define(version: 20161004044651) do
   end
 
   create_table "rounds", force: true do |t|
-    t.integer  "game_id"
-    t.integer  "score"
-    t.integer  "place"
-    t.integer  "correct"
-    t.integer  "asterisk"
-    t.integer  "player_id"
+    t.integer  "game_id",    limit: 8
+    t.integer  "score",      limit: 8
+    t.integer  "place",      limit: 8
+    t.integer  "correct",    limit: 8
+    t.integer  "asterisk",   limit: 8
+    t.integer  "player_id",  limit: 8
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "rounds", force: true do |t|
+    t.integer  "game_id",    limit: 8
+    t.integer  "score",      limit: 8
+    t.integer  "place",      limit: 8
+    t.integer  "correct",    limit: 8
+    t.integer  "asterisk",   limit: 8
+    t.integer  "player_id",  limit: 8
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -117,12 +172,12 @@ ActiveRecord::Schema.define(version: 20161004044651) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                            default: "", null: false
+    t.string   "encrypted_password",               default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          limit: 8,              null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -133,7 +188,31 @@ ActiveRecord::Schema.define(version: 20161004044651) do
     t.boolean  "admin"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["email"], name: "idx_16553_index_users_on_email", unique: true, using: :btree
+  add_index "users", ["email"], name: "idx_16627_index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "idx_16553_index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "idx_16627_index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "users", force: true do |t|
+    t.string   "email",                            default: "", null: false
+    t.string   "encrypted_password",               default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          limit: 8,              null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "approved"
+    t.boolean  "admin"
+  end
+
+  add_index "users", ["email"], name: "idx_16553_index_users_on_email", unique: true, using: :btree
+  add_index "users", ["email"], name: "idx_16627_index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "idx_16553_index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "idx_16627_index_users_on_reset_password_token", unique: true, using: :btree
 
 end

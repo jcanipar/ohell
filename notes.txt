@@ -6,3 +6,12 @@ pg_dump --format=c ohell_development > export.sql
 
 Restore pg database
 heroku pg:backups:restore 'http://jacobcaniparoli.net/export.sql' DATABASE_URL
+
+Fixed glyphicon brokenness:
+http://fuzzyblog.io/blog/rails/2017/08/12/when-font-awesome-won-t-render-in-production-on-rails-5-x.html
+
+https://devcenter.heroku.com/articles/heroku-postgres-import-export
+
+https://devcenter.heroku.com/articles/custom-domains
+
+<%= datepicker_field(f, :date) %>

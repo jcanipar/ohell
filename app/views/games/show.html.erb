@@ -11,6 +11,12 @@
 <p>
   
   <h4><%= @game.numplay %> Player Game</h4>
+  <% if @game.backwards %>
+  	<span class="label label-warning">Backwards</span>
+  <% end %>
+  <% if @game.notrump %>
+  	<span class="label label-warning">No Trump</span>
+  <% end %><br><br>
   <%= link_to 'Edit', edit_game_path(@game) %>
 </p>
 

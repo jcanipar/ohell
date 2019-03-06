@@ -53,6 +53,8 @@ class GamesController < ApplicationController
     temp_game = Game.new()
     temp_game.date = game_params[:date].to_date
     temp_game.numplay = game_params[:numplay]
+    temp_game.backwards = game_params[:backwards]
+    temp_game.notrump = game_params[:notrump]
     temp_game.description = game_params[:description]
 
     puts game_params[:rounds_attributes]
@@ -173,7 +175,7 @@ class GamesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def game_params
-      params.require(:game).permit(:date, :numplay, :description, :league, 
+      params.require(:game).permit(:date, :numplay, :description, :league, :backwards, :notrump, 
         rounds_attributes: [:score, :place, :correct, :asterisk, :player_id, :id])
     end
 end
