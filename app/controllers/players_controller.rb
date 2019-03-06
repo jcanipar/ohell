@@ -6,21 +6,8 @@ class PlayersController < ApplicationController
   # GET /players
   # GET /players.json
   def index
-    # if (params[:show_teams])
-    #   @players = Player.where(team: true)
-    # elsif (params[:all_players])
-    #   @players = Player.all()
-    #   @players = @players.sort_by{ |x| -x.rounds.size}
-    # else
-    #   @players = Player.where(team: false)
-    #   puts "Player size: " + @players.size.to_s
-    #   @players.each do | player |
-    #     puts player.firstname + player.rounds.size.to_s
-    #   end
-    #   @players = @players.select{ |x| x.rounds.size > 0}
-    #   @players = @players.sort_by{ |x| -x.rounds.size}
-    # end
     @players = Player.all
+    @players = @players.sort_by{ |player| -player.games_played}
   end
 
   # GET /players
@@ -49,7 +36,7 @@ class PlayersController < ApplicationController
       end
       
     end
-    #@player_stats = @player_stats.sort_by{|e| -e[:wins]}
+    
   end
 
   # GET /players/1
