@@ -44,6 +44,7 @@ class PlayersController < ApplicationController
   def show
 
     @rounds_all = Round.where(player_id: @player.id)
+    @rounds_all = @rounds_all.sort_by{ |round| round.game.date}.reverse
     rounds_three = @rounds_all.select{ |x| x.game.numplay == 3}
     rounds_four = @rounds_all.select{ |x| x.game.numplay == 4}
     rounds_five = @rounds_all.select{ |x| x.game.numplay == 5}
