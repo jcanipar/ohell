@@ -32,7 +32,7 @@
 	<% game_rounds.each do |round| %>
 		<tr>
 			<td><%= round.place %></td>
-			<td><%= round.player.nickname %></td>			
+			<td><%= link_to round.player.nickname, round.player %></td>			
 			<td><%= round.score %></td>
 			<td><%= round.correct %></td>
 			<td><%= round.score - (10*round.correct) %></td>
