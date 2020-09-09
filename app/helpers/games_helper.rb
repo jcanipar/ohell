@@ -1,6 +1,6 @@
 module GamesHelper
 	def total_correct(game)
-		total_correct = 21
+		total_correct = 0
 		game.rounds.each do |round|
 			total_correct = total_correct + round.correct
 		end
