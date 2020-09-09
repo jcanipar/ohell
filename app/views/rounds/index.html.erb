@@ -15,6 +15,7 @@
       <th><%= link_to 'Tricks Taken', rounds_path(sort: "taken", num_players: @num_players) %></th>
       <th><%= link_to 'Asterisk', rounds_path(sort: "asterisk", num_players: @num_players)%></th>
       <th>Player</th>
+      <th>Date</th>
       <th></th>
       <th></th>
       <th></th>
@@ -35,6 +36,7 @@
         <td><%= round.score - (round.correct*10) %></td>
         <td><%= round.asterisk %></td>
         <td><%= link_to round.player.nickname, round.player %></td>
+        <td><%= link_to round.game.date.strftime("%B %d, %Y"), round.game %></td>
         <!--<td><%= link_to 'Show', round %></td>-->
         <!--<td><%= link_to 'Edit', edit_round_path(round) %></td>-->
       </tr>
