@@ -29,7 +29,7 @@ gem 'twitter-bootstrap-rails', '2.2.8'
 
 gem 'less-rails', '~> 2.8.0'
 
-gem 'bcrypt-ruby', '3.1.2'
+#gem 'bcrypt-ruby', '3.1.12'
 
 gem 'bootstrap_form'
 
