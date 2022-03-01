@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
 
 
-ruby "2.3.7"
+ruby "2.5.1"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.2'
+gem 'rails', '4.2.8'
 
 # Use mysql as the database for Active Record
 #gem 'mysql2', '~> 0.3.18'
@@ -37,7 +37,7 @@ gem 'bootstrap-datepicker-rails'
 
 gem 'devise'
 
-gem 'rack', '1.5.5'
+gem 'rack', '1.6'
 
 gem 'jquery-turbolinks'
 
