@@ -3,6 +3,12 @@
 <div class="btn-group">  
   <%= link_to 'New Game', new_game_path, :class=>"btn btn-success"  %>
 </div>
+<br><br>
+<div class="btn-group">
+  <%= link_to "3 Player", games_path(num_players: '3', sort: params[:sort]), :class=>"btn" %>
+  <%= link_to "4 Player", games_path(num_players: '4', sort: params[:sort]), :class=>"btn" %>
+  <%= link_to "5 Player", games_path(num_players: '5', sort: params[:sort]), :class=>"btn" %>
+</div>
 
 <table id="game-index-table" class="table table-striped table-hover tablesorter">
   <thead>

@@ -4,8 +4,15 @@ class GamesController < ApplicationController
   # GET /games
   # GET /games.json
   def index
-    @games = Game.all
-    @games = Game.order(date: :desc)
+    if (params[:num_players] != nil)
+      @num_players = params[:num_players]
+      @games = Game.where(numplay: @num_players)
+    else
+      @games = Game.all
+    end
+
+    
+    @games = @games.order(date: :desc)
   end
 
   # GET /games/1
