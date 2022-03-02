@@ -8,6 +8,7 @@ class GamesController < ApplicationController
       @num_players = params[:num_players]
       @games = Game.where(numplay: @num_players)
     else
+      @num_players = "All"
       @games = Game.all
     end
 

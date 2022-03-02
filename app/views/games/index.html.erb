@@ -1,4 +1,4 @@
-<h1>All Games</h1>
+<h1><%= @num_players%> Player Games</h1>
 
 <div class="btn-group">  
   <%= link_to 'New Game', new_game_path, :class=>"btn btn-success"  %>
@@ -10,6 +10,7 @@
   <%= link_to "5 Player", games_path(num_players: '5', sort: params[:sort]), :class=>"btn" %>
 </div>
 
+<br><br><h5><%=@games.size%> games found</h5><br>
 <table id="game-index-table" class="table table-striped table-hover tablesorter">
   <thead>
     <tr>
