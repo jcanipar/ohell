@@ -17,7 +17,7 @@
   <% if @game.notrump %>
   	<span class="label label-warning">No Trump</span>
   <% end %><br><br>
-  <%= link_to 'Edit', edit_game_path(@game) %>
+  <%= link_to 'Edit', edit_game_path(@game), :class=>"btn" %>
 </p>
 
 <table id="game_show_table" class="table tablesorter table-striped table-hover">

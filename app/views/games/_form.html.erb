@@ -13,7 +13,6 @@
   <% end %>
 
   <div class="btn-group">
-    
     <%= link_to "3 Player", new_game_path(num_players: '3'), {:id => "new1", :class=>"btn"}  %>
     <%= link_to "4 Player", new_game_path(num_players: '4'), {:id => "new2", :class=>"btn"}  %>
     <%= link_to "5 Player", new_game_path(num_players: '5'), {:id => "new3", :class=>"btn"}  %>
@@ -85,7 +84,8 @@
   </div>
 
     <div class="actions">
-    <%= f.submit %>
+      <%= f.submit  class: "btn"%>
+      <%= link_to 'Cancel', @game, class: "btn" %>
   </div>
 <% end %>
 
